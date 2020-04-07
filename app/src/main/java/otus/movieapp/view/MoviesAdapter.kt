@@ -1,4 +1,4 @@
-package otus.movieapp
+package otus.movieapp.view
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import otus.movieapp.R
 import otus.movieapp.model.Movie
 import otus.movieapp.network.NetworkConstants
 

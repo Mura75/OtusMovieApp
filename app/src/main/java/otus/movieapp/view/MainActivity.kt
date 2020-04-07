@@ -1,4 +1,4 @@
-package otus.movieapp
+package otus.movieapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
-import otus.movieapp.model.Movie
+import otus.movieapp.R
 import otus.movieapp.network.ApiService
 import java.io.IOException
 import kotlin.coroutines.CoroutineContext
@@ -16,7 +16,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     private val job = SupervisorJob()
 
     private val adapter by lazy {
-        MoviesAdapter()
+        MoviesAdapter(
+            itemClickListener = { item ->
+                DetailActivity.start(this, item.id)
+            })
     }
 
     override val coroutineContext: CoroutineContext

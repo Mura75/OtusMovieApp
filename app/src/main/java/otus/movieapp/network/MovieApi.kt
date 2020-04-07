@@ -12,7 +12,7 @@ import retrofit2.http.Query
 interface MovieApi {
 
     @GET("movie/{movie_id}")
-    suspend fun getMovie(@Path("movie_id") movieId: Int) : Flow<Response<Movie>>
+    suspend fun getMovie(@Path("movie_id") movieId: Int) : Response<Movie>
 
     @GET("movie/popular")
     suspend fun getPopularMovies(@Query("page") page: Int) : Response<MoviesResponse>
