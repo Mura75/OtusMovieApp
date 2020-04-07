@@ -1,19 +1,21 @@
 package otus.movieapp.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Movie(
-    val id: Int,
-    val adult: Boolean? = null,
-    val backdropPath: String? = null,
-    val genreIds: List<Int>? = null,
-    val genres: List<Genre>? = null,
-    val originalLanguage: String? = null,
-    val originalTitle: String? = null,
-    val overview: String? = null,
-    val popularity: Double? = null,
-    val posterPath: String? = null,
-    val releaseDate: String? = null,
-    val title: String? = null,
-    val video: Boolean? = null,
-    val voteAverage: Double? = null,
-    val voteCount: Int? = null
+    @SerializedName("id") val id: Int,
+    @SerializedName("adult") val adult: Boolean? = null,
+    @SerializedName("backdrop_path") val backdropPath: String? = null,
+    @SerializedName("genre_ids") val genreIds: List<Int>? = null,
+    @SerializedName("genres") val genres: List<Genre>? = null,
+    @SerializedName("original_language") val originalLanguage: String? = null,
+    @SerializedName("original_title") val originalTitle: String? = null,
+    @SerializedName("overview") val overview: String? = null,
+    @SerializedName("popularity") val popularity: Double? = null,
+    @SerializedName("poster_path") val posterPath: String? = null,
+    @SerializedName("release_date") val releaseDate: String? = null,
+    @SerializedName("title") val title: String? = null,
+    @SerializedName("video") val video: Boolean? = null,
+    @SerializedName("vote_average") val voteAverage: Double? = null,
+    @SerializedName("vote_count") val voteCount: Int? = null
 )

@@ -1,5 +1,6 @@
 package otus.movieapp.network
 
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.Flow
 import otus.movieapp.model.Movie
 import otus.movieapp.model.MoviesResponse
