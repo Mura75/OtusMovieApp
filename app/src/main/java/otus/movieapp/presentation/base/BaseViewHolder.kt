@@ -1,4 +1,4 @@
-package otus.movieapp.presentation.view
+package otus.movieapp.presentation.base
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

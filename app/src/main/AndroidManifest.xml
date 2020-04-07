@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name="otus.movieapp.presentation.view.DetailActivity"></activity>
-        <activity android:name="otus.movieapp.presentation.view.MainActivity">
+        <activity android:name="otus.movieapp.presentation.list.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
