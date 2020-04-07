@@ -1,13 +1,12 @@
 package otus.movieapp.data.model
 
 import com.google.gson.annotations.SerializedName
-import otus.movieapp.data.model.Movie
 
 data class MoviesResponse(
     @SerializedName("page")
     val page: Int?,
     @SerializedName("results")
-    val results: List<Movie>?,
+    val results: List<MovieData>?,
     @SerializedName("total_pages")
     val totalPages: Int?,
     @SerializedName("total_results")

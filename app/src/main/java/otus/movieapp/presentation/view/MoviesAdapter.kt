@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import otus.movieapp.R
-import otus.movieapp.data.model.Movie
+import otus.movieapp.data.model.MovieData
 import otus.movieapp.data.network.NetworkConstants
 
 class MoviesAdapter(
-    private val itemClickListener: ((item: Movie) -> Unit)? = null
+    private val itemClickListener: ((item: MovieData) -> Unit)? = null
 ) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private val VIEW_TYPE_LOADING = 0
@@ -21,7 +21,7 @@ class MoviesAdapter(
 
     private var isLoaderVisible = false
 
-    private val movies = ArrayList<Movie>()
+    private val movies = ArrayList<MovieData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -57,12 +57,12 @@ class MoviesAdapter(
         }
     }
 
-    fun addItems(list: List<Movie>) {
+    fun addItems(list: List<MovieData>) {
         movies.addAll(list)
         notifyDataSetChanged()
     }
 
-    fun setNewItems(list: List<Movie>) {
+    fun setNewItems(list: List<MovieData>) {
         movies.clear()
         addItems(list)
         isLoaderVisible = false
@@ -70,7 +70,7 @@ class MoviesAdapter(
 
     fun addLoading() {
         isLoaderVisible = true
-        movies.add(Movie(id = -1))
+        movies.add(MovieData(id = -1))
         notifyItemInserted(movies.size - 1)
     }
 
@@ -86,7 +86,7 @@ class MoviesAdapter(
         }
     }
 
-    fun getItem(position: Int): Movie? {
+    fun getItem(position: Int): MovieData? {
         return movies.get(position)
     }
 
@@ -97,7 +97,7 @@ class MoviesAdapter(
 
     inner class MovieViewHolder(
         private val view: View,
-        private val itemClickListener: ((item: Movie) -> Unit)? = null
+        private val itemClickListener: ((item: MovieData) -> Unit)? = null
     ): BaseViewHolder(view) {
 
         private val tvTitle: TextView
@@ -114,7 +114,7 @@ class MoviesAdapter(
             tvDate = view.findViewById(R.id.tvGenre)
         }
 
-        fun bind(item: Movie) {
+        fun bind(item: MovieData) {
             tvTitle.text = item.title
             item.voteAverage?.let { rating ->
                 tvRating.text = "$rating/10"

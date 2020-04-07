@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.coroutines.*
 import otus.movieapp.R
-import otus.movieapp.data.model.Movie
+import otus.movieapp.data.model.MovieData
 import otus.movieapp.data.network.ApiService
 import otus.movieapp.data.network.NetworkConstants
 import kotlin.coroutines.CoroutineContext
@@ -63,15 +63,15 @@ class DetailActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private fun showInfo(movie: Movie) {
+    private fun showInfo(movieData: MovieData) {
         Glide.with(this)
-            .load("${NetworkConstants.BACKDROP_BASE_URL}${movie.backdropPath}")
+            .load("${NetworkConstants.BACKDROP_BASE_URL}${movieData.backdropPath}")
             .into(ivPoster)
 
-        tvName.text = movie.title
-        tvDescription.text = movie.overview
-        tvGenre.text = movie.genres?.first()?.name
-        tvDate.text = movie.releaseDate
-        tvRating.text = "${movie.voteAverage}/10"
+        tvName.text = movieData.title
+        tvDescription.text = movieData.overview
+        tvGenre.text = movieData.genres?.first()?.name
+        tvDate.text = movieData.releaseDate
+        tvRating.text = "${movieData.voteAverage}/10"
     }
 }

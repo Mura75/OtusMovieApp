@@ -1,14 +1,13 @@
 package otus.movieapp.data.model
 
 import com.google.gson.annotations.SerializedName
-import otus.movieapp.data.model.Genre
 
-data class Movie(
+data class MovieData(
     @SerializedName("id") val id: Int,
     @SerializedName("adult") val adult: Boolean? = null,
     @SerializedName("backdrop_path") val backdropPath: String? = null,
     @SerializedName("genre_ids") val genreIds: List<Int>? = null,
-    @SerializedName("genres") val genres: List<Genre>? = null,
+    @SerializedName("genres") val genres: List<GenreData>? = null,
     @SerializedName("original_language") val originalLanguage: String? = null,
     @SerializedName("original_title") val originalTitle: String? = null,
     @SerializedName("overview") val overview: String? = null,
