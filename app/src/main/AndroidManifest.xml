@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.DetailActivity"></activity>
-        <activity android:name=".view.MainActivity">
+        <activity android:name="otus.movieapp.presentation.view.DetailActivity"></activity>
+        <activity android:name="otus.movieapp.presentation.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

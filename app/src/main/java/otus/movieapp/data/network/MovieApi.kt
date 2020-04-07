@@ -1,9 +1,7 @@
-package otus.movieapp.network
+package otus.movieapp.data.network
 
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.flow.Flow
-import otus.movieapp.model.Movie
-import otus.movieapp.model.MoviesResponse
+import otus.movieapp.data.model.Movie
+import otus.movieapp.data.model.MoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

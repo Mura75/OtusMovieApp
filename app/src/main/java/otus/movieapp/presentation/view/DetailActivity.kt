@@ -1,4 +1,4 @@
-package otus.movieapp.view
+package otus.movieapp.presentation.view
 
 import android.content.Context
 import android.content.Intent
@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.coroutines.*
 import otus.movieapp.R
-import otus.movieapp.model.Movie
-import otus.movieapp.network.ApiService
-import otus.movieapp.network.NetworkConstants
+import otus.movieapp.data.model.Movie
+import otus.movieapp.data.network.ApiService
+import otus.movieapp.data.network.NetworkConstants
 import kotlin.coroutines.CoroutineContext
 
 class DetailActivity : AppCompatActivity(), CoroutineScope {

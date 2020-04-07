@@ -1,6 +1,7 @@
-package otus.movieapp.model
+package otus.movieapp.data.model
 
 import com.google.gson.annotations.SerializedName
+import otus.movieapp.data.model.Movie
 
 data class MoviesResponse(
     @SerializedName("page")

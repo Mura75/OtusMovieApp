@@ -1,4 +1,4 @@
-package otus.movieapp.model
+package otus.movieapp.data.model
 
 data class Genre(
     val id: Int,

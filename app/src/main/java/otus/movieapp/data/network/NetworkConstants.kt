@@ -1,4 +1,4 @@
-package otus.movieapp.network
+package otus.movieapp.data.network
 
 object NetworkConstants {
     const val MOVIE_API_URL = "https://api.themoviedb.org/3/"

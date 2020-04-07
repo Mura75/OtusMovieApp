@@ -1,4 +1,4 @@
-package otus.movieapp.view
+package otus.movieapp.presentation.view
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import otus.movieapp.R
-import otus.movieapp.model.Movie
-import otus.movieapp.network.NetworkConstants
+import otus.movieapp.data.model.Movie
+import otus.movieapp.data.network.NetworkConstants
 
 class MoviesAdapter(
     private val itemClickListener: ((item: Movie) -> Unit)? = null

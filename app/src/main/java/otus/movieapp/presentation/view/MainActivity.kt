@@ -1,4 +1,4 @@
-package otus.movieapp.view
+package otus.movieapp.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import otus.movieapp.R
-import otus.movieapp.network.ApiService
+import otus.movieapp.data.network.ApiService
 import java.io.IOException
 import kotlin.coroutines.CoroutineContext
 
