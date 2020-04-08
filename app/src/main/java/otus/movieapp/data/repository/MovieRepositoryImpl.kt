@@ -1,5 +1,6 @@
 package otus.movieapp.data.repository
 
+import android.util.Log
 import io.reactivex.Single
 import otus.movieapp.data.MovieMapper
 import otus.movieapp.data.network.MovieApi
@@ -15,8 +16,9 @@ class MovieRepositoryImpl(
         return movieApi.getPopularMovies(page)
             .flatMap { response ->
                 if (response.isSuccessful) {
-                    val pages = response.body()?.totalPages ?: 0
+                    val pages = response.body()?.page ?: 0
                     val list = response.body()?.results?.map { movieMapper.to(it) } ?: emptyList()
+                    Log.d("movies_list_response", list.toString())
                     val pair = Pair(pages, list)
                     Single.just(pair)
                 } else {

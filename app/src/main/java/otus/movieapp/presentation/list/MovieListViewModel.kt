@@ -1,32 +1,44 @@
 package otus.movieapp.presentation.list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
+import androidx.lifecycle.Transformations
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import io.reactivex.schedulers.Schedulers
+import otus.movieapp.presentation.source.MovieDataSource
+import otus.movieapp.presentation.source.MovieDataSourceFactory
+import otus.movieapp.domain.model.Movie
 import otus.movieapp.domain.repository.MovieRepository
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.base.BaseViewModel
 
 class MovieListViewModel(
-    private val movieRepository: MovieRepository
+    private val repository: MovieRepository
 ) : BaseViewModel() {
 
-    private val state = MutableLiveData<MovieState>()
-    val liveData: LiveData<MovieState> = state
+    val pagedListLiveData : LiveData<PagedList<Movie>>
+    val liveData: LiveData<MovieState>
 
-    fun getMovies(page: Int = 1) {
-        addDisposable(
-            movieRepository.getMovies(page)
-                .subscribeOn(Schedulers.io())
-                .map { pair -> MovieState.ResultList(totalPage = pair.first, movies = pair.second) }
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { state.value = MovieState.ShowLoading }
-                .doFinally { state.value = MovieState.HideLoading }
-                .subscribe(
-                    { result -> state.value = result },
-                    { error -> state.value = MovieState.Error(error.localizedMessage) }
-                )
+    private val movieDataSourceFactory: MovieDataSourceFactory
+
+    init {
+        val pagedListConfig = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(MovieDataSource.PAGE_SIZE * 2)
+            .setPageSize(MovieDataSource.PAGE_SIZE)
+            .setPrefetchDistance(10)
+            .build()
+        movieDataSourceFactory = MovieDataSourceFactory(repository, compositeDisposable)
+
+        pagedListLiveData = LivePagedListBuilder(movieDataSourceFactory, pagedListConfig)
+            .build()
+
+        liveData = Transformations.switchMap(
+            movieDataSourceFactory.movieLiveData,
+            MovieDataSource::getStateMutableLiveData
         )
     }
+
+    fun clear() = movieDataSourceFactory.invalidate()
 }

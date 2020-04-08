@@ -2,6 +2,7 @@ package otus.movieapp.presentation.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,6 @@ import otus.movieapp.domain.repository.MovieRepository
 import otus.movieapp.presentation.MovieViewModelFactory
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.view.DetailActivity
-import otus.movieapp.presentation.view.MoviesAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
         getMovies()
 
         srlMovies.setOnRefreshListener {
-            adapter.clearAll()
-            getMovies()
+            viewModel.clear()
         }
     }
 
@@ -58,16 +57,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getMovies() {
-        viewModel.getMovies(page = 1)
         viewModel.liveData.observe(this, Observer { result ->
             when (result) {
                 is MovieState.ShowLoading -> { srlMovies.isRefreshing = true }
                 is MovieState.HideLoading -> { srlMovies.isRefreshing = false }
-                is MovieState.ResultList -> {
-                    adapter.addItems(result.movies)
-                }
                 is MovieState.Error -> {}
             }
+        })
+
+        viewModel.pagedListLiveData.observe(this, Observer { result ->
+            Log.d("activity_result", result.toString())
+            adapter.submitList(result)
         })
     }
 
