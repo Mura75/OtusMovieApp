@@ -34,7 +34,7 @@ object ApiService {
 
     private fun getAuthInterceptor(): Interceptor {
         return Interceptor { chain ->
-            val newUrl = chain.request().url()
+            val newUrl = chain.request().url
                 .newBuilder()
                 .addQueryParameter("api_key", NetworkConstants.API_KEY)
                 .build()
