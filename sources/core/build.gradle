@@ -33,6 +33,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.12'
 
-    api daggerDependencies.dagger
-    kapt daggerDependencies.daggerCompiler
+    api project(':sources:core_api')
+    implementation project(':sources:core_impl')
 }

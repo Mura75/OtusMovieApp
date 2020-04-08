@@ -1,0 +1,32 @@
+package otus.movie_list.di
+
+import androidx.lifecycle.ViewModel
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import otus.movie_list.repository.MovieRepository
+import otus.movie_list.repository.MovieRepositoryImpl
+import otus.movie_list.view.MovieListViewModel
+import otus.movieapp.data.network.MovieApi
+import javax.inject.Singleton
+
+@Module
+abstract class MovieListModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindsMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository
+
+    companion object {
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideMovieListViewModel(
+            map: @JvmSuppressWildcards MutableMap<Class<out ViewModel>, ViewModel>,
+            movieRepository: MovieRepository
+        ): ViewModel = MovieListViewModel(movieRepository).also {
+            map[MovieListViewModel::class.java] = it
+        }
+    }
+}

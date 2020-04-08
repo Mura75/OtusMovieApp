@@ -1,0 +1,38 @@
+package otus.movie_list.repository
+
+import android.util.Log
+import io.reactivex.Single
+import otus.core_api.dto.MovieData
+import otus.movieapp.data.network.MovieApi
+import javax.inject.Inject
+
+class MovieRepositoryImpl @Inject constructor(
+    private val movieApi: MovieApi
+) : MovieRepository {
+
+    override fun getMovies(page: Int): Single<Pair<Int, List<MovieData>>> {
+        return movieApi.getPopularMovies(page)
+            .flatMap { response ->
+                if (response.isSuccessful) {
+                    val pages = response.body()?.page ?: 0
+                    val list = response.body()?.results ?: emptyList()
+                    Log.d("movies_list_response", list.toString())
+                    val pair = Pair(pages, list)
+                    Single.just(pair)
+                } else {
+                    Single.error(Throwable(""))
+                }
+            }
+    }
+
+    override fun getMovie(movieId: Int): Single<MovieData> {
+        return movieApi.getMovie(movieId)
+            .flatMap { response ->
+                if (response.isSuccessful) {
+                    Single.just(response.body())
+                } else {
+                    Single.error(Throwable(""))
+                }
+            }
+    }
+}
