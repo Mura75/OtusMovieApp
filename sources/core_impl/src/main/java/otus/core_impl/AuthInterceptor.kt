@@ -1,23 +1,20 @@
 package otus.core_impl
 
-import android.content.Context
-import android.net.ConnectivityManager
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
+import otus.movieapp.data.network.NetworkConstants
 
-class AuthInterceptor constructor(
-    private val context: Context
-) : Interceptor {
+class AuthInterceptor : Interceptor {
+
     override fun intercept(chain: Interceptor.Chain): Response {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val netInfo = connectivityManager.activeNetworkInfo
-        val isConnected = netInfo != null && netInfo.isConnected
-        if (!isConnected) {
-            throw Exception("Network error")
-        } else {
-            return chain.proceed(chain.request())
-        }
+        val newUrl = chain.request().url
+            .newBuilder()
+            .addQueryParameter("api_key", NetworkConstants.API_KEY)
+            .build()
+        val newRequest = chain.request()
+            .newBuilder()
+            .url(newUrl)
+            .build()
+        return chain.proceed(newRequest)
     }
 }

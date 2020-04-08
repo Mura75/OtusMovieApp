@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 import otus.core_api.mediator.AppWithFacade
 
 import otus.movie_list.R
+import otus.movie_list.di.EagerTrigger
 import otus.movie_list.di.MovieListComponent
 import java.util.EnumSet.of
 import javax.inject.Inject
@@ -32,6 +33,9 @@ class MovieListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var eagerTrigger: EagerTrigger
 
     private lateinit var viewModel: MovieListViewModel
 

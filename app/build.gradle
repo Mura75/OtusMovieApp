@@ -48,8 +48,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //MVVM
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //rxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
@@ -86,6 +86,6 @@ dependencies {
 
 
     implementation project(':sources:core')
-    implementation project(':sources:movie_list')
     implementation project(':sources:main')
+    implementation project(':sources:movie_list')
 }

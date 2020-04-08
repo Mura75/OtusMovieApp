@@ -14,12 +14,12 @@ import otus.core_api.network.NetworkProvider
 interface FacadeComponent : ProvidersFacade {
 
     companion object {
-        fun init(application: Application): FacadeComponent {
-            return DaggerFacadeComponent.builder()
+
+        fun init(application: Application): FacadeComponent =
+            DaggerFacadeComponent.builder()
                 .appProvider(AppComponent.create(application))
                 .networkProvider(CoreProvidersFactory.createNetworkBuilder(AppComponent.create(application)))
                 .build()
-        }
     }
 
     fun inject(app: MovieApp)

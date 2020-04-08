@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -17,7 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -32,7 +32,7 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @Reusable
     fun provideApiService(retrofit: Retrofit): MovieApi {
         return retrofit.create(MovieApi::class.java)
     }
@@ -56,6 +56,7 @@ class NetworkModule {
     @Singleton
     fun provideOkHttp(
         connectionCheckerInterceptor: Interceptor,
+        networkInterceptor: NetworkInterceptor,
         authInterceptor: AuthInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
@@ -63,6 +64,7 @@ class NetworkModule {
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(connectionCheckerInterceptor)
+            .addInterceptor(networkInterceptor)
             .addInterceptor(authInterceptor)
             .addInterceptor(httpLoggingInterceptor)
 //        if (BuildConfig.DEBUG) {
@@ -91,9 +93,16 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthInterceptor(context: Context): AuthInterceptor {
-        return AuthInterceptor(context)
+    fun provideNetworkInterceptor(context: Context): NetworkInterceptor {
+        return NetworkInterceptor(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideAuthInterceptor(): AuthInterceptor {
+        return AuthInterceptor()
+    }
+
 
     @Provides
     @Singleton

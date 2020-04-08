@@ -1,3 +1,5 @@
 package otus.core_api.mediator
 
-interface ProvidersFacade : AppProvider, MediatorsProvider
+import otus.core_api.network.NetworkProvider
+
+interface ProvidersFacade : MediatorsProvider, NetworkProvider, AppProvider

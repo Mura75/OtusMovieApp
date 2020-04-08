@@ -52,4 +52,5 @@ dependencies {
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.retrofitGson
     implementation retrofitDependencies.retrofitRxJava
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }

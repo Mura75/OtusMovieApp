@@ -8,6 +8,7 @@ import dagger.Provides
 import otus.movie_list.repository.MovieRepository
 import otus.movie_list.repository.MovieRepositoryImpl
 import otus.movie_list.view.MovieListViewModel
+import otus.movie_list.view.MovieViewModel
 import otus.movieapp.data.network.MovieApi
 import javax.inject.Singleton
 
@@ -31,5 +32,12 @@ abstract class MovieListModule {
             map[MovieListViewModel::class.java] = it
             Log.d("vm_map_init", map.toString())
         }
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideDummy(viewModel: ViewModel) = EagerTrigger()
     }
 }
+
+class EagerTrigger
