@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import otus.core_api.mediator.AppWithFacade
+import otus.core_api.mediator.MovieDetailMediator
 
 import otus.movie_list.R
 import otus.movie_list.di.EagerTrigger
@@ -27,9 +28,15 @@ class MovieListFragment : Fragment() {
     private val adapter by lazy {
         MoviesAdapter(
             itemClickListener = { item ->
-
+                movieDetailMediator.startMovieDetailScreen(
+                    context = requireContext(),
+                    movieId = item.id
+                )
             })
     }
+
+    @Inject
+    lateinit var movieDetailMediator: MovieDetailMediator
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

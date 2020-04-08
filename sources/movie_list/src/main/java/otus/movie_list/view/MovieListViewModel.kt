@@ -15,12 +15,10 @@ import javax.inject.Inject
 
 class MovieListViewModel @Inject constructor(
     private val movieRepository: MovieRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     val pagedListLiveData : LiveData<PagedList<MovieData>>
     val liveData: LiveData<MovieState>
-
-    private val compositeDisposable = CompositeDisposable()
 
     private val movieDataSourceFactory: MovieDataSourceFactory
 
@@ -40,11 +38,6 @@ class MovieListViewModel @Inject constructor(
             movieDataSourceFactory.movieLiveData,
             MovieDataSource::getStateMutableLiveData
         )
-    }
-
-    override fun onCleared() {
-        compositeDisposable.clear()
-        super.onCleared()
     }
 
     fun clear() = movieDataSourceFactory.invalidate()

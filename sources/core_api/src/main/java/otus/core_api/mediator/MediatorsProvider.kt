@@ -6,4 +6,5 @@ interface MediatorsProvider {
 
     fun provideMovieListMediator(): MovieListMediator
 
+    fun provideMovieMovieDetailMediator(): MovieDetailMediator
 }

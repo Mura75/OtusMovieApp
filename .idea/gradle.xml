@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/sources/core_api" />
             <option value="$PROJECT_DIR$/sources/core_impl" />
             <option value="$PROJECT_DIR$/sources/main" />
+            <option value="$PROJECT_DIR$/sources/movie_detail" />
             <option value="$PROJECT_DIR$/sources/movie_list" />
           </set>
         </option>

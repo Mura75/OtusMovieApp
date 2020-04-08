@@ -24,15 +24,4 @@ class MovieRepositoryImpl @Inject constructor(
                 }
             }
     }
-
-    override fun getMovie(movieId: Int): Single<MovieData> {
-        return movieApi.getMovie(movieId)
-            .flatMap { response ->
-                if (response.isSuccessful) {
-                    Single.just(response.body())
-                } else {
-                    Single.error(Throwable(""))
-                }
-            }
-    }
 }
