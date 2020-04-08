@@ -8,6 +8,9 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.coroutines.*
 import otus.movieapp.R
@@ -21,9 +24,10 @@ import otus.movieapp.domain.repository.MovieRepository
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.MovieViewModelFactory
 import otus.movieapp.presentation.list.MovieListViewModel
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), HasAndroidInjector {
 
     companion object {
         fun start(context: Context, movieId: Int) {
@@ -33,27 +37,27 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
+    }
+
     private val movieId by lazy {
         intent.getIntExtra("movie_id", 0)
     }
 
-    private lateinit var viewModel: DetailViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        initDependencies()
         setData()
     }
 
-    private fun initDependencies() {
-        val repository: MovieRepository = MovieRepositoryImpl(
-            movieApi = ApiService.getMovieApi(),
-            movieMapper = MovieMapper()
-        )
-        val factory = MovieViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
-    }
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     private fun setData() {
         viewModel.getMovie(id = movieId)

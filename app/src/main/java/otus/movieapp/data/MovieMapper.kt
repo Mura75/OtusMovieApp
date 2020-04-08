@@ -5,9 +5,10 @@ import otus.movieapp.data.model.MovieData
 import otus.movieapp.domain.Mapper
 import otus.movieapp.domain.model.Genre
 import otus.movieapp.domain.model.Movie
+import javax.inject.Inject
 
 
-class MovieMapper : Mapper<Movie, MovieData> {
+class MovieMapper @Inject constructor(): Mapper<Movie, MovieData> {
 
     override fun from(model: Movie): MovieData = with(model) {
         return MovieData(

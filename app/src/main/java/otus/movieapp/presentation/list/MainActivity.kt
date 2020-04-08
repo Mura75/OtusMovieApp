@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import otus.movieapp.R
 import otus.movieapp.data.MovieMapper
@@ -15,8 +19,19 @@ import otus.movieapp.domain.repository.MovieRepository
 import otus.movieapp.presentation.MovieViewModelFactory
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.view.DetailActivity
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasAndroidInjector {
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
+    }
 
     private val adapter by lazy {
         MoviesAdapter(
@@ -28,12 +43,9 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private lateinit var viewModel: MovieListViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initDependencies()
         setAdapter()
         getMovies()
 
@@ -42,18 +54,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
+
     private fun setAdapter() {
         rvMovies.layoutManager = LinearLayoutManager(this)
         rvMovies.adapter = adapter
-    }
-
-    private fun initDependencies() {
-        val repository: MovieRepository = MovieRepositoryImpl(
-            movieApi = ApiService.getMovieApi(),
-            movieMapper = MovieMapper()
-        )
-        val factory = MovieViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(MovieListViewModel::class.java)
     }
 
     private fun getMovies() {
