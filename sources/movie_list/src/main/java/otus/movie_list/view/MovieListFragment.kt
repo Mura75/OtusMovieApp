@@ -14,6 +14,7 @@ import otus.core_api.mediator.AppWithFacade
 
 import otus.movie_list.R
 import otus.movie_list.di.MovieListComponent
+import java.util.EnumSet.of
 import javax.inject.Inject
 
 class MovieListFragment : Fragment() {
@@ -32,14 +33,13 @@ class MovieListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
-    }
+    private lateinit var viewModel: MovieListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MovieListComponent.create((requireActivity().application as AppWithFacade).getFacade())
             .inject(this)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
     }
 
     override fun onCreateView(

@@ -1,5 +1,6 @@
 package otus.core_impl
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Module
@@ -17,7 +18,10 @@ class ViewModelModule {
 
     @Provides
     @Singleton
-    fun bindsFactory(map: @JvmSuppressWildcards MutableMap<Class<out ViewModel>, ViewModel>): ViewModelProvider.Factory {
+    fun bindsFactory(
+        map: @JvmSuppressWildcards MutableMap<Class<out ViewModel>, ViewModel>
+    ): ViewModelProvider.Factory {
+        Log.d("vm_map", "bindsFactory: "+ map.toString())
         return ViewModelFactoryProvider(map)
     }
 }

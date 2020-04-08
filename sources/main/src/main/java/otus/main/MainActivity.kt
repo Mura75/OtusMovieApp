@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         MainComponent.create((application as AppWithFacade).getFacade()).inject(this)
+        setContentView(R.layout.activity_main)
 
         movieListMediator.startMovieListScreen(
             containerId = R.id.main_container,

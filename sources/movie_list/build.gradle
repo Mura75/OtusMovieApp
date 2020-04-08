@@ -37,7 +37,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation project(':sources:core_api')
+    api project(':sources:core')
     implementation daggerDependencies.dagger
     kapt daggerDependencies.daggerCompiler
 
@@ -52,6 +52,4 @@ dependencies {
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.retrofitGson
     implementation retrofitDependencies.retrofitRxJava
-
-    api project(':sources:core')
 }

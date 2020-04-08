@@ -1,3 +1,3 @@
 package otus.core_api.mediator
 
-interface ProvidersFacade : AppProvider
+interface ProvidersFacade : AppProvider, MediatorsProvider

@@ -1,5 +1,6 @@
 package otus.movie_list.di
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
@@ -15,8 +16,9 @@ abstract class MovieListModule {
 
     @Binds
     @Singleton
-    abstract fun bindsMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository
+    abstract fun bindsMovieRepository(movieRepository: MovieRepositoryImpl): MovieRepository
 
+    @Module
     companion object {
 
         @Provides
@@ -27,6 +29,7 @@ abstract class MovieListModule {
             movieRepository: MovieRepository
         ): ViewModel = MovieListViewModel(movieRepository).also {
             map[MovieListViewModel::class.java] = it
+            Log.d("vm_map_init", map.toString())
         }
     }
 }

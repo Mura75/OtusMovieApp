@@ -22,5 +22,5 @@ interface FacadeComponent : ProvidersFacade {
         }
     }
 
-    fun inject(app: MovieDBApp)
+    fun inject(app: MovieApp)
 }

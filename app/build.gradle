@@ -87,4 +87,5 @@ dependencies {
 
     implementation project(':sources:core')
     implementation project(':sources:movie_list')
+    implementation project(':sources:main')
 }
