@@ -9,10 +9,11 @@ ext {
     rxJavaVersion = '2.2.17'
     rxAndroidVersion = '2.1.1'
     androidLifecylce = '2.2.0'
+    daggerVersion = '2.27'
 
     jsr330 = "javax.inject:javax.inject:$jsr330Version"
-    dagger = "com.google.dagger:dagger:$daggerVersion"
-    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+//    dagger = "com.google.dagger:dagger:$daggerVersion"
+//    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
     material = "com.google.android.material:material:$materialVersion"
 
     retrofitDependencies = [
@@ -39,6 +40,14 @@ ext {
     lifecycleDependencies = [
             extensions : buildDependency('androidx.lifecycle:lifecycle-extensions', glideVersion),
             viewmodel :  buildDependency('androidx.lifecycle:lifecycle-viewmodel-ktx', glideVersion)
+    ]
+
+    daggerDependencies = [
+            dagger                 : buildDependency('com.google.dagger:dagger', daggerVersion),
+            daggerAndroidSupport   : buildDependency('com.google.dagger:dagger-android-support', daggerVersion),
+            daggerAndroid          : buildDependency('com.google.dagger:dagger-android', daggerVersion),
+            daggerAndroidProcessor : buildDependency('com.google.dagger:dagger-android-processor', daggerVersion),
+            daggerCompiler         : buildDependency('com.google.dagger:dagger-compiler', daggerVersion)
     ]
 }
 

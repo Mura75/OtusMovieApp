@@ -1,4 +1,4 @@
-package otus.t.core
+package otus.core
 
 import org.junit.Test
 
