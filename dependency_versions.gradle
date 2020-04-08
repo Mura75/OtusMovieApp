@@ -1,0 +1,47 @@
+ext {
+    retrofitVersion = '2.7.2'
+    okHttpVersion = '4.5.0'
+    glideVersion = '4.10.0'
+    pagingVersion = '2.1.2'
+    daggerVersion = '2.27'
+    jsr330Version = '1'
+    materialVersion = '1.1.0'
+    rxJavaVersion = '2.2.17'
+    rxAndroidVersion = '2.1.1'
+    androidLifecylce = '2.2.0'
+
+    jsr330 = "javax.inject:javax.inject:$jsr330Version"
+    dagger = "com.google.dagger:dagger:$daggerVersion"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    material = "com.google.android.material:material:$materialVersion"
+
+    retrofitDependencies = [
+            retrofit      : buildDependency('com.squareup.retrofit2:retrofit', retrofitVersion),
+            retrofitGson  : buildDependency('com.squareup.retrofit2:converter-gson', retrofitVersion),
+            retrofitRxJava: buildDependency('com.squareup.retrofit2:adapter-rxjava2', retrofitVersion)
+    ]
+
+    okHttpDependencies = [
+            okHttp       : buildDependency('com.squareup.okhttp3:okhttp', okHttpVersion),
+            logging      : buildDependency('com.squareup.okhttp3:logging-interceptor', okHttpVersion)
+    ]
+
+    rxDependencies = [
+            rxJava   : buildDependency('io.reactivex.rxjava2:rxjava', rxJavaVersion),
+            rxAndroid: buildDependency('io.reactivex.rxjava2:rxandroid', rxAndroidVersion)
+    ]
+
+    glideDependencies = [
+            glide        : buildDependency('com.github.bumptech.glide:glide', glideVersion),
+            glideCompiler: buildDependency('com.github.bumptech.glide:compiler', glideVersion)
+    ]
+
+    lifecycleDependencies = [
+            extensions : buildDependency('androidx.lifecycle:lifecycle-extensions', glideVersion),
+            viewmodel :  buildDependency('androidx.lifecycle:lifecycle-viewmodel-ktx', glideVersion)
+    ]
+}
+
+static String buildDependency(String pack, String version) {
+    return "$pack:$version"
+}
