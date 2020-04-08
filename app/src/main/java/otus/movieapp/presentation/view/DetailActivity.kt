@@ -9,19 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.coroutines.*
 import otus.movieapp.R
 import otus.movieapp.data.MovieMapper
-import otus.movieapp.data.model.MovieData
 import otus.movieapp.data.network.ApiService
 import otus.movieapp.data.network.NetworkConstants
 import otus.movieapp.data.repository.MovieRepositoryImpl
 import otus.movieapp.domain.model.Movie
 import otus.movieapp.domain.repository.MovieRepository
+import otus.movieapp.domain.use_case.MovieDetailUseCase
 import otus.movieapp.presentation.MovieState
-import otus.movieapp.presentation.MovieViewModelFactory
-import otus.movieapp.presentation.list.MovieListViewModel
-import kotlin.coroutines.CoroutineContext
 
 class DetailActivity : AppCompatActivity() {
 
@@ -51,7 +47,8 @@ class DetailActivity : AppCompatActivity() {
             movieApi = ApiService.getMovieApi(),
             movieMapper = MovieMapper()
         )
-        val factory = MovieViewModelFactory(repository)
+        val movieDetailUseCase = MovieDetailUseCase(repository)
+        val factory = MovieDetailViewModelFactory(movieDetailUseCase)
         viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
     }
 

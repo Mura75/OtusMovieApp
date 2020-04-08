@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import otus.movieapp.domain.repository.MovieRepository
+import otus.movieapp.domain.use_case.MovieDetailUseCase
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.base.BaseViewModel
 
 class DetailViewModel(
-    private val movieRepository: MovieRepository
+    private val movieDetailUseCase: MovieDetailUseCase
 ) : BaseViewModel() {
 
     private val state = MutableLiveData<MovieState>()
@@ -17,7 +18,7 @@ class DetailViewModel(
 
     fun getMovie(id: Int) {
         addDisposable(
-            movieRepository.getMovie(movieId = id)
+            movieDetailUseCase.getMovie(id = id)
                 .subscribeOn(Schedulers.io())
                 .map { movie -> MovieState.ResultItem(movie) }
                 .observeOn(AndroidSchedulers.mainThread())

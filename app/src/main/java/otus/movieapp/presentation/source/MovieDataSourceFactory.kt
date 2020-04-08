@@ -6,10 +6,11 @@ import androidx.paging.DataSource
 import io.reactivex.disposables.CompositeDisposable
 import otus.movieapp.domain.model.Movie
 import otus.movieapp.domain.repository.MovieRepository
+import otus.movieapp.domain.use_case.MovieListUseCase
 
 
 class MovieDataSourceFactory(
-    private val repository: MovieRepository,
+    private val movieListUseCase: MovieListUseCase,
     private val compositeDisposable: CompositeDisposable
 ) : DataSource.Factory<Int, Movie>() {
 
@@ -18,7 +19,7 @@ class MovieDataSourceFactory(
     private lateinit var movieDataSource: MovieDataSource
 
     override fun create(): DataSource<Int, Movie> {
-        movieDataSource = MovieDataSource(repository, compositeDisposable)
+        movieDataSource = MovieDataSource(movieListUseCase, compositeDisposable)
         movieLiveData.postValue(movieDataSource)
         return movieDataSource
     }

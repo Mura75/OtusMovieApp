@@ -10,11 +10,12 @@ import otus.movieapp.presentation.source.MovieDataSource
 import otus.movieapp.presentation.source.MovieDataSourceFactory
 import otus.movieapp.domain.model.Movie
 import otus.movieapp.domain.repository.MovieRepository
+import otus.movieapp.domain.use_case.MovieListUseCase
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.base.BaseViewModel
 
 class MovieListViewModel(
-    private val repository: MovieRepository
+    private val movieListUseCase: MovieListUseCase
 ) : BaseViewModel() {
 
     val pagedListLiveData : LiveData<PagedList<Movie>>
@@ -29,7 +30,7 @@ class MovieListViewModel(
             .setPageSize(MovieDataSource.PAGE_SIZE)
             .setPrefetchDistance(10)
             .build()
-        movieDataSourceFactory = MovieDataSourceFactory(repository, compositeDisposable)
+        movieDataSourceFactory = MovieDataSourceFactory(movieListUseCase, compositeDisposable)
 
         pagedListLiveData = LivePagedListBuilder(movieDataSourceFactory, pagedListConfig)
             .build()

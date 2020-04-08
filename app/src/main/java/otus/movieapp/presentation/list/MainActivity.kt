@@ -12,7 +12,7 @@ import otus.movieapp.data.MovieMapper
 import otus.movieapp.data.network.ApiService
 import otus.movieapp.data.repository.MovieRepositoryImpl
 import otus.movieapp.domain.repository.MovieRepository
-import otus.movieapp.presentation.MovieViewModelFactory
+import otus.movieapp.domain.use_case.MovieListUseCase
 import otus.movieapp.presentation.MovieState
 import otus.movieapp.presentation.view.DetailActivity
 
@@ -52,7 +52,8 @@ class MainActivity : AppCompatActivity() {
             movieApi = ApiService.getMovieApi(),
             movieMapper = MovieMapper()
         )
-        val factory = MovieViewModelFactory(repository)
+        val movieListUseCase = MovieListUseCase(repository)
+        val factory = MovieListViewModelFactory(movieListUseCase)
         viewModel = ViewModelProvider(this, factory).get(MovieListViewModel::class.java)
     }
 

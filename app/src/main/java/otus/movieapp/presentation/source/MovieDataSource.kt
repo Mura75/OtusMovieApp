@@ -8,11 +8,12 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import otus.movieapp.domain.model.Movie
 import otus.movieapp.domain.repository.MovieRepository
+import otus.movieapp.domain.use_case.MovieListUseCase
 import otus.movieapp.presentation.MovieState
 
 
 class MovieDataSource(
-    private val repository: MovieRepository,
+    private val movieListUseCase: MovieListUseCase,
     private val compositeDisposable: CompositeDisposable
 ) : PageKeyedDataSource<Int, Movie>() {
 
@@ -28,7 +29,7 @@ class MovieDataSource(
         callback: LoadInitialCallback<Int, Movie>
     ) {
         compositeDisposable.add(
-            repository.getMovies(page = FIRST_PAGE)
+            movieListUseCase.getMovies(page = FIRST_PAGE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { stateMutableLiveData.postValue(MovieState.ShowLoading) }
@@ -46,7 +47,7 @@ class MovieDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         compositeDisposable.add(
-            repository.getMovies(params.key)
+            movieListUseCase.getMovies(params.key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { stateMutableLiveData.postValue(MovieState.ShowLoading) }
