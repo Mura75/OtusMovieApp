@@ -1,2 +1,8 @@
 rootProject.name='OtusMovieApp'
 include ':app'
+include ':sources:core'
+include ':sources:core_api'
+include ':sources:core_impl'
+include ':sources:movie_list'
+include ':sources:main'
+include ':sources:movie_detail'
