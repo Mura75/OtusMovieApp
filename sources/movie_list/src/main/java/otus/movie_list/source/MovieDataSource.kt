@@ -29,8 +29,6 @@ class MovieDataSource(
     ) {
         compositeDisposable.add(
             repository.getMovies(page = FIRST_PAGE)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { stateMutableLiveData.postValue(MovieState.ShowLoading) }
                 .doFinally { stateMutableLiveData.postValue(MovieState.HideLoading) }
                 .subscribe(
@@ -38,7 +36,7 @@ class MovieDataSource(
                         callback.onResult(result.second, null, FIRST_PAGE + 1)
                     },
                     { error ->
-                        Log.d("paged_data_value_init", error.toString())
+                        stateMutableLiveData.postValue(MovieState.Error(error.localizedMessage))
                     }
                 )
         )
@@ -47,18 +45,15 @@ class MovieDataSource(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, MovieData>) {
         compositeDisposable.add(
             repository.getMovies(params.key)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { stateMutableLiveData.postValue(MovieState.ShowLoading) }
                 .doFinally { stateMutableLiveData.postValue(MovieState.HideLoading) }
                 .subscribe(
                     { pair ->
-                        Log.d("paged_data_value_after", pair.toString())
                         val key = if (pair.second.size > 0) params.key + 1 else null
                         callback.onResult(pair.second, key)
                     },
                     { error ->
-                        Log.d("paged_data_value", error.toString())
+                        stateMutableLiveData.postValue(MovieState.Error(error.localizedMessage))
                     }
                 )
         )
