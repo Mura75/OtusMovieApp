@@ -33,6 +33,14 @@ android {
         }
     }
 
+    lintOptions {
+        ignoreTestSources true
+        abortOnError false
+        ignoreWarnings false
+        xmlReport true
+        checkDependencies true
+        baselineFile file("lint-baseline.xml")
+    }
 }
 
 dependencies {
@@ -89,4 +97,6 @@ dependencies {
     implementation project(':sources:main')
     implementation project(':sources:movie_list')
     implementation project(':sources:movie_detail')
+
+    compileOnly project(':sources:lint-check')
 }

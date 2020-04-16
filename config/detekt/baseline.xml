@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>EmptyClassBlock:AppModule.kt$AppModule${ }</ID>
+    <ID>EmptyClassBlock:MovieViewModel.kt$MovieViewModel${ }</ID>
+    <ID>EmptyDefaultConstructor:MovieState.kt$MovieState$()</ID>
+    <ID>EmptyFunctionBlock:MainMediatorImpl.kt$MainMediatorImpl${ }</ID>
+    <ID>EmptyFunctionBlock:MovieDataSource.kt$MovieDataSource${ }</ID>
+    <ID>EmptyFunctionBlock:MoviesAdapter.kt$MoviesAdapter.MovieViewHolder${ }</ID>
+    <ID>EmptyFunctionBlock:PagedListMock.kt$MockLimitDataSource${ }</ID>
+    <ID>MagicNumber:MovieListViewModel.kt$MovieListViewModel$10</ID>
+    <ID>NewLineAtEndOfFile:AppComponent.kt$otus.movieapp.AppComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:AppConstants.kt$otus.core_api.AppConstants.kt</ID>
+    <ID>NewLineAtEndOfFile:AppModule.kt$otus.movieapp.AppModule.kt</ID>
+    <ID>NewLineAtEndOfFile:AppProvider.kt$otus.core_api.mediator.AppProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:AppWithFacade.kt$otus.core_api.mediator.AppWithFacade.kt</ID>
+    <ID>NewLineAtEndOfFile:AuthInterceptor.kt$otus.core_impl.AuthInterceptor.kt</ID>
+    <ID>NewLineAtEndOfFile:BaseViewHolder.kt$otus.core_api.base.BaseViewHolder.kt</ID>
+    <ID>NewLineAtEndOfFile:BaseViewModel.kt$otus.core_api.base.BaseViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:CoreProvidersFactory.kt$otus.core.CoreProvidersFactory.kt</ID>
+    <ID>NewLineAtEndOfFile:FacadeComponent.kt$otus.movieapp.FacadeComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:MainComponent.kt$otus.main.di.MainComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:MainMediator.kt$otus.core_api.mediator.MainMediator.kt</ID>
+    <ID>NewLineAtEndOfFile:MainMediatorImpl.kt$otus.main.navigation.MainMediatorImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:MediatorsBindings.kt$otus.movieapp.MediatorsBindings.kt</ID>
+    <ID>NewLineAtEndOfFile:MediatorsProvider.kt$otus.core_api.mediator.MediatorsProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieApi.kt$otus.movieapp.data.network.MovieApi.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieApp.kt$otus.movieapp.MovieApp.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieData.kt$otus.core_api.dto.MovieData.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDataSource.kt$otus.movie_list.source.MovieDataSource.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDataSourceFactory.kt$otus.movie_list.source.MovieDataSourceFactory.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailComponent.kt$otus.movie_detail.di.MovieDetailComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailMediator.kt$otus.core_api.mediator.MovieDetailMediator.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailMediatorImpl.kt$otus.movie_detail.MovieDetailMediatorImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailModule.kt$otus.movie_detail.di.MovieDetailModule.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailRepository.kt$otus.movie_detail.repository.MovieDetailRepository.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailRepositoryImpl.kt$otus.movie_detail.repository.MovieDetailRepositoryImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailRepositoryImplTest.kt$otus.movie_detail.repository.MovieDetailRepositoryImplTest.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailViewModel.kt$com.mobile.moviedatabase.features.movies.detail.MovieDetailViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailViewModelTest.kt$otus.movie_detail.view_model.MovieDetailViewModelTest.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListComponent.kt$otus.movie_list.di.MovieListComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListMediator.kt$otus.core_api.mediator.MovieListMediator.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListMediatorImpl.kt$otus.movie_list.MovieListMediatorImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListModule.kt$otus.movie_list.di.MovieListModule.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListViewModel.kt$otus.movie_list.view.MovieListViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListViewModelTest.kt$otus.movie_list.view.MovieListViewModelTest.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieRepository.kt$otus.movie_list.repository.MovieRepository.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieRepositoryImpl.kt$otus.movie_list.repository.MovieRepositoryImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieRepositoryTest.kt$otus.movie_list.repository.MovieRepositoryTest.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieState.kt$otus.movie_detail.view.MovieState.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieState.kt$otus.movie_list.view.MovieState.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieViewModel.kt$otus.movie_list.view.MovieViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MoviesAdapter.kt$otus.movie_list.view.MoviesAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkComponent.kt$otus.core_impl.NetworkComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkInterceptor.kt$otus.core_impl.NetworkInterceptor.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkModule.kt$otus.core_impl.NetworkModule.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkProvider.kt$otus.core_api.network.NetworkProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:PagedListMock.kt$otus.movie_list.PagedListMock.kt</ID>
+    <ID>NewLineAtEndOfFile:ProvidersFacade.kt$otus.core_api.mediator.ProvidersFacade.kt</ID>
+    <ID>NewLineAtEndOfFile:RxJavaRule.kt$otus.RxJavaRule.kt</ID>
+    <ID>NewLineAtEndOfFile:RxJavaRule.kt$otus.movie_list.RxJavaRule.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelComponent.kt$otus.core_impl.ViewModelComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelFactoryProvider.kt$otus.core_impl.ViewModelFactoryProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelKey.kt$otus.core_api.view_model.ViewModelKey.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelModule.kt$otus.core_impl.ViewModelModule.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelsProvider.kt$otus.core_api.view_model.ViewModelsProvider.kt</ID>
+    <ID>PackageNaming:AppConstants.kt$package otus.core_api</ID>
+    <ID>PackageNaming:AppProvider.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:AppWithFacade.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:AuthInterceptor.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:BaseViewHolder.kt$package otus.core_api.base</ID>
+    <ID>PackageNaming:BaseViewModel.kt$package otus.core_api.base</ID>
+    <ID>PackageNaming:GenreData.kt$package otus.core_api.dto</ID>
+    <ID>PackageNaming:MainMediator.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:MediatorsProvider.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:MovieData.kt$package otus.core_api.dto</ID>
+    <ID>PackageNaming:MovieDataSource.kt$package otus.movie_list.source</ID>
+    <ID>PackageNaming:MovieDataSourceFactory.kt$package otus.movie_list.source</ID>
+    <ID>PackageNaming:MovieDetailActivity.kt$package otus.movie_detail.view</ID>
+    <ID>PackageNaming:MovieDetailComponent.kt$package otus.movie_detail.di</ID>
+    <ID>PackageNaming:MovieDetailMediator.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:MovieDetailMediatorImpl.kt$package otus.movie_detail</ID>
+    <ID>PackageNaming:MovieDetailModule.kt$package otus.movie_detail.di</ID>
+    <ID>PackageNaming:MovieDetailRepository.kt$package otus.movie_detail.repository</ID>
+    <ID>PackageNaming:MovieDetailRepositoryImpl.kt$package otus.movie_detail.repository</ID>
+    <ID>PackageNaming:MovieListComponent.kt$package otus.movie_list.di</ID>
+    <ID>PackageNaming:MovieListFragment.kt$package otus.movie_list.view</ID>
+    <ID>PackageNaming:MovieListMediator.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:MovieListMediatorImpl.kt$package otus.movie_list</ID>
+    <ID>PackageNaming:MovieListModule.kt$package otus.movie_list.di</ID>
+    <ID>PackageNaming:MovieListViewModel.kt$package otus.movie_list.view</ID>
+    <ID>PackageNaming:MovieRepository.kt$package otus.movie_list.repository</ID>
+    <ID>PackageNaming:MovieRepositoryImpl.kt$package otus.movie_list.repository</ID>
+    <ID>PackageNaming:MovieState.kt$package otus.movie_detail.view</ID>
+    <ID>PackageNaming:MovieState.kt$package otus.movie_list.view</ID>
+    <ID>PackageNaming:MovieViewModel.kt$package otus.movie_list.view</ID>
+    <ID>PackageNaming:MoviesAdapter.kt$package otus.movie_list.view</ID>
+    <ID>PackageNaming:MoviesResponse.kt$package otus.core_api.dto</ID>
+    <ID>PackageNaming:NetworkComponent.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:NetworkInterceptor.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:NetworkModule.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:NetworkProvider.kt$package otus.core_api.network</ID>
+    <ID>PackageNaming:ProvidersFacade.kt$package otus.core_api.mediator</ID>
+    <ID>PackageNaming:ViewModelComponent.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:ViewModelFactoryProvider.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:ViewModelKey.kt$package otus.core_api.view_model</ID>
+    <ID>PackageNaming:ViewModelModule.kt$package otus.core_impl</ID>
+    <ID>PackageNaming:ViewModelsProvider.kt$package otus.core_api.view_model</ID>
+    <ID>TooGenericExceptionThrown:NetworkInterceptor.kt$NetworkInterceptor$throw Exception("Network error")</ID>
+    <ID>TooGenericExceptionThrown:NetworkModule.kt$NetworkModule.&lt;no name provided&gt;$throw Exception("Network error")</ID>
+  </Whitelist>
+</SmellBaseline>
