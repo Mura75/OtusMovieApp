@@ -5,18 +5,29 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
         
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.5.1"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.7.0-beta1"
+}
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+    autoCorrect = true
+}
+
 allprojects {
+    apply from: "$rootDir/detekt.gradle"
     repositories {
         google()
         jcenter()
@@ -29,3 +40,31 @@ task clean(type: Delete) {
 }
 
 apply from: "$project.rootDir/dependency_versions.gradle"
+
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+tasks.detekt.jvmTarget = "1.8"
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+    autoCorrect = true
+}
+
+task detektProjectBaseline(type: io.gitlab.arturbosch.detekt.DetektCreateBaselineTask) {
+    description = "Overrides current baseline."
+    ignoreFailures.set(true)
+    parallel.set(true)
+    buildUponDefaultConfig.set(true)
+    setSource(files(rootDir))
+    config.setFrom(files("$rootDir/detekt.yml"))
+    baseline.set(file("$rootDir/config/detekt/baseline.xml"))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+}
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt.class) {
+    exclude("**/resources/**")
+    exclude("**/test/**")
+    exclude("**/tmp/**")
+}

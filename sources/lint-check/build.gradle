@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.71"
+
+    compileOnly "com.android.tools.lint:lint-api:26.6.2"
+    compileOnly "com.android.tools.lint:lint-checks:26.6.2"
+
+    testImplementation "com.android.tools.lint:lint:26.6.2"
+    testImplementation "com.android.tools.lint:lint-tests:26.6.2"
+}
+
+jar {
+    manifest {
+        attributes('Lint-Registry-v2': 'com.otus.lint_check.CustomIssueRegistry')
+    }
+}

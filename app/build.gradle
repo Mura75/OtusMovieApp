@@ -33,6 +33,14 @@ android {
         }
     }
 
+    lintOptions {
+        ignoreTestSources true
+        abortOnError false
+        ignoreWarnings false
+        xmlReport true
+        checkDependencies true
+        baselineFile file("lint-baseline.xml")
+    }
 }
 
 dependencies {
@@ -43,7 +51,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
@@ -89,4 +97,6 @@ dependencies {
     implementation project(':sources:main')
     implementation project(':sources:movie_list')
     implementation project(':sources:movie_detail')
+
+    compileOnly project(':sources:lint-check')
 }
