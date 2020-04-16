@@ -10,6 +10,7 @@
     <ID>EmptyFunctionBlock:MoviesAdapter.kt$MoviesAdapter.MovieViewHolder${ }</ID>
     <ID>EmptyFunctionBlock:PagedListMock.kt$MockLimitDataSource${ }</ID>
     <ID>MagicNumber:MovieListViewModel.kt$MovieListViewModel$10</ID>
+    <ID>MaxLineLength:WrongDimensionDetectorTest.kt$WrongDimensionDetectorTest.WrongDimensionDetectorTestParametrized$ res/layout/layout.xml:9: Error: All xml size values must be divisible by 4 [WrongDimensionDetector]</ID>
     <ID>NewLineAtEndOfFile:AppComponent.kt$otus.movieapp.AppComponent.kt</ID>
     <ID>NewLineAtEndOfFile:AppConstants.kt$otus.core_api.AppConstants.kt</ID>
     <ID>NewLineAtEndOfFile:AppModule.kt$otus.movieapp.AppModule.kt</ID>
@@ -19,6 +20,7 @@
     <ID>NewLineAtEndOfFile:BaseViewHolder.kt$otus.core_api.base.BaseViewHolder.kt</ID>
     <ID>NewLineAtEndOfFile:BaseViewModel.kt$otus.core_api.base.BaseViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:CoreProvidersFactory.kt$otus.core.CoreProvidersFactory.kt</ID>
+    <ID>NewLineAtEndOfFile:CustomIssueRegistry.kt$com.otus.lint_check.CustomIssueRegistry.kt</ID>
     <ID>NewLineAtEndOfFile:FacadeComponent.kt$otus.movieapp.FacadeComponent.kt</ID>
     <ID>NewLineAtEndOfFile:MainComponent.kt$otus.main.di.MainComponent.kt</ID>
     <ID>NewLineAtEndOfFile:MainMediator.kt$otus.core_api.mediator.MainMediator.kt</ID>
@@ -65,12 +67,15 @@
     <ID>NewLineAtEndOfFile:ViewModelKey.kt$otus.core_api.view_model.ViewModelKey.kt</ID>
     <ID>NewLineAtEndOfFile:ViewModelModule.kt$otus.core_impl.ViewModelModule.kt</ID>
     <ID>NewLineAtEndOfFile:ViewModelsProvider.kt$otus.core_api.view_model.ViewModelsProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:WrongDimensionDetector.kt$com.otus.lint_check.WrongDimensionDetector.kt</ID>
+    <ID>NewLineAtEndOfFile:WrongDimensionDetectorTest.kt$com.otus.lint_check.WrongDimensionDetectorTest.kt</ID>
     <ID>PackageNaming:AppConstants.kt$package otus.core_api</ID>
     <ID>PackageNaming:AppProvider.kt$package otus.core_api.mediator</ID>
     <ID>PackageNaming:AppWithFacade.kt$package otus.core_api.mediator</ID>
     <ID>PackageNaming:AuthInterceptor.kt$package otus.core_impl</ID>
     <ID>PackageNaming:BaseViewHolder.kt$package otus.core_api.base</ID>
     <ID>PackageNaming:BaseViewModel.kt$package otus.core_api.base</ID>
+    <ID>PackageNaming:CustomIssueRegistry.kt$package com.otus.lint_check</ID>
     <ID>PackageNaming:GenreData.kt$package otus.core_api.dto</ID>
     <ID>PackageNaming:MainMediator.kt$package otus.core_api.mediator</ID>
     <ID>PackageNaming:MediatorsProvider.kt$package otus.core_api.mediator</ID>
@@ -107,7 +112,9 @@
     <ID>PackageNaming:ViewModelKey.kt$package otus.core_api.view_model</ID>
     <ID>PackageNaming:ViewModelModule.kt$package otus.core_impl</ID>
     <ID>PackageNaming:ViewModelsProvider.kt$package otus.core_api.view_model</ID>
+    <ID>PackageNaming:WrongDimensionDetector.kt$package com.otus.lint_check</ID>
     <ID>TooGenericExceptionThrown:NetworkInterceptor.kt$NetworkInterceptor$throw Exception("Network error")</ID>
     <ID>TooGenericExceptionThrown:NetworkModule.kt$NetworkModule.&lt;no name provided&gt;$throw Exception("Network error")</ID>
+    <ID>WildcardImport:WrongDimensionDetector.kt$import com.android.tools.lint.detector.api.*</ID>
   </Whitelist>
 </SmellBaseline>

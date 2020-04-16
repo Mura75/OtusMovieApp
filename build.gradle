@@ -62,3 +62,9 @@ task detektProjectBaseline(type: io.gitlab.arturbosch.detekt.DetektCreateBaselin
     exclude("**/resources/**")
     exclude("**/build/**")
 }
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt.class) {
+    exclude("**/resources/**")
+    exclude("**/test/**")
+    exclude("**/tmp/**")
+}
