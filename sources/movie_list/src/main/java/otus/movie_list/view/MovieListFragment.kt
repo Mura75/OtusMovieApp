@@ -28,10 +28,11 @@ class MovieListFragment : Fragment() {
 
     private val adapter by lazy {
         MoviesAdapter(
-            itemClickListener = { item ->
+            itemClickListener = { item, imageView ->
                 movieDetailMediator.startMovieDetailScreen(
                     context = requireContext(),
-                    movieId = item.id
+                     movieData = item,
+                    imageView = imageView
                 )
             })
     }

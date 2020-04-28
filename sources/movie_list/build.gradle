@@ -37,6 +37,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    api project(':sources:app-style')
     api project(':sources:core')
     implementation daggerDependencies.dagger
     kapt daggerDependencies.daggerCompiler
