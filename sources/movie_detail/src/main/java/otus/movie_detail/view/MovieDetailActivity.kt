@@ -43,7 +43,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var ivPoster: ImageView
-    private lateinit var tvName: TextView
+    lateinit var tvName: TextView
     private lateinit var tvGenre: TextView
     private lateinit var tvDate: TextView
     private lateinit var tvRating: TextView
