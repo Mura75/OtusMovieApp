@@ -53,7 +53,6 @@ class MovieListFragmentTest {
             assertNotNull(shadowActivity)
             val intent = shadowActivity.nextStartedActivity
             assertNotNull(intent)
-
         }
     }
 
@@ -61,6 +60,8 @@ class MovieListFragmentTest {
     fun testActivity() {
         rule.scenario.onActivity { activity ->
             val expectedIntent = Intent(activity, MovieDetailActivity::class.java)
+
+            // todo return ull can't figure it out.
             val actual: Intent = ShadowApplication().nextStartedActivity
 
             assertNotNull(actual)
