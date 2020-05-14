@@ -32,6 +32,7 @@ class MovieListViewModel @Inject constructor(
     lateinit var liveData: LiveData<MovieState>
 
     init {
+        // Comment for checking docker.
         getMovies()
     }
 
