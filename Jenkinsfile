@@ -1,7 +1,13 @@
 #!groovy
 pipeline {
-  agent any
-  triggers { cron('H/5 * * * *') }
+  agent {
+    docker {
+        image 'jangrewe/gitlab-ci-android'
+        args '-it --memory=26g --cpus="3"'
+        customWorkspace "${JENKINS_HOME}/workspace/${JOB_NAME}/${BUILD_NUMBER}"
+    }
+  }
+  triggers { pollSCM('H/15 * * * *'') }
 
   stages {
       stage('prepare') {
