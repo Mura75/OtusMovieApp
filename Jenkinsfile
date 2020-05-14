@@ -7,7 +7,7 @@ pipeline {
         customWorkspace "${JENKINS_HOME}/workspace/${JOB_NAME}/${BUILD_NUMBER}"
     }
   }
-  triggers { pollSCM('H/15 * * * *'') }
+  triggers { pollSCM('H/15 * * * *') }
 
   stages {
       stage('prepare') {
