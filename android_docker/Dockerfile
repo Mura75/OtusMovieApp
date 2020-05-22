@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-LABEL mura
+LABEL maintainer=mura
 
 ENV VERSION_SDK_TOOLS "4333796"
 
