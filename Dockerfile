@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:lts
-MAINTAINER mura
+MAINTAINER vitalyraevsky
 
 USER root
 
