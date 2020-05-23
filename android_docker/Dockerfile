@@ -1,4 +1,4 @@
-FROM gradle:5.4.1-jdk8
+FROM gradle:5.6.4-jdk8
 
 ENV SDK_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip" \
     ANDROID_HOME="/usr/local/android-sdk" \
