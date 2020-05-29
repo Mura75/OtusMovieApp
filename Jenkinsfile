@@ -1,11 +1,7 @@
 #!groovy
 pipeline {
-    agent {
-        docker {
-            image 'android-docker'
-            customWorkspace "${JENKINS_HOME}/workspace/${JOB_NAME}/${BUILD_NUMBER}"
-        }
-    }
+  agent any
+
   triggers { pollSCM('H/15 * * * *') }
 
   stages {
