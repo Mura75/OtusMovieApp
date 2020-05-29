@@ -15,6 +15,11 @@ pipeline {
               sh "./gradlew clean assembleDebug --stacktrace"
           }
       }
+      stage('buildRelease') {
+            steps {
+                sh "./gradlew clean assembleRelease --stacktrace"
+            }
+      }
       stage('test') {
           steps {
               sh "./gradlew test"
