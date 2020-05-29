@@ -15,10 +15,10 @@ pipeline {
               sh "./gradlew clean assembleDebug --stacktrace"
           }
       }
-//      stage('test') {
-//          steps {
-//              sh "./gradlew test"
-//          }
-//      }
+      stage('test') {
+          steps {
+              sh "./gradlew test"
+          }
+      }
   }
 }
