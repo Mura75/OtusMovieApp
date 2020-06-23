@@ -62,9 +62,9 @@ pipeline {
     def keystorePath = "./app"
     withCredentials(
         [
-            file(credentialsId: 'publish_json', variable: 'google_app_credentials')
+            file(credentialsId: 'publish_properties', variable: 'publish_properties')
         ]
     ) {
-            sh "cp -f $google_app_credentials $keystorePath/publish.json"
+            sh "cp -f publish_properties $keystorePath/publish.json"
       }
   }
