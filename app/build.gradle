@@ -1,7 +1,15 @@
+plugins {
+    id 'com.android.application'
+    id 'com.github.triplet.play' version '2.8.0'
+}
+
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.google.firebase.appdistribution'
 
 android {
     compileSdkVersion 29
@@ -11,8 +19,8 @@ android {
         applicationId "otus.movieapp"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,9 +34,36 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    signingConfigs {
+        release {
+            try {
+                def propsFile = rootProject.file('keystore/signing.properties')
+                def props = new Properties()
+
+                if (propsFile.canRead()) {
+                    props.load(new FileInputStream(propsFile))
+                    storePassword props['KEYSTORE_PASSWORD']
+                    keyAlias props['KEY_ALIAS']
+                    keyPassword props['KEY_PASSWORD']
+                    storeFile file("${rootDir}${props['KEY_STORE']}")
+                }
+            }
+            catch (ex) {
+                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            firebaseAppDistribution {
+                appId = FIREBASE_APP_ID
+                serviceCredentialsFile = GOOGLE_APPLICATION_CREDENTIALS
+                testers = "zmurager2@gmail.com"
+            }
+
             minifyEnabled false
+            //signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -89,4 +124,12 @@ dependencies {
     implementation project(':sources:main')
     implementation project(':sources:movie_list')
     implementation project(':sources:movie_detail')
+}
+
+play {
+    serviceAccountCredentials = file("/Users/murager/Desktop/upload_key/publisher_key.json")
+    track = "alpha"
+    releaseName = "Test app release"
+    artifactDir = file("/Users/murager/AndroidProjects/Otus/OtusMovieApp/app/release")
+    defaultToAppBundles = true
 }

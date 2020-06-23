@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "562988749243",
+    "firebase_url": "https://moviedb-e897e.firebaseio.com",
+    "project_id": "moviedb-e897e",
+    "storage_bucket": "moviedb-e897e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562988749243:android:a23631020c24a87581b49e",
+        "android_client_info": {
+          "package_name": "otus.movieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562988749243-k7cgtr2oune5g5gqr9u3f4olhuftorjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjQcjT9BJqcPcPRM4IGwHaRJ6RPe8qvVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562988749243-k7cgtr2oune5g5gqr9u3f4olhuftorjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

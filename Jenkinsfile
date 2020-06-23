@@ -8,6 +8,12 @@ pipeline {
       stage('prepare') {
           steps {
               sh "chmod +x gradlew"
+              loadKeystore()
+          }
+      }
+      stage('lint-check') {
+          steps {
+            sh "./gradlew lint"
           }
       }
       stage('build') {
@@ -25,5 +31,18 @@ pipeline {
               sh "./gradlew test"
           }
       }
+  }
+
+  def loadKeystore() {
+    def keystorePath = "./app"
+    withCredentials(
+        [
+            file(credentialsId: 'keystore', variable: 'keystore')
+            file(credentialsId: 'properties', variable: 'properties')
+        ]
+    ) {
+        sh "cp -f $keystore $keystorePath/upload-keystore.jks"
+        sh "cp -f $properties $keystorePath/signing.properties"
+    }
   }
 }
