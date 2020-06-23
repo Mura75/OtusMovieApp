@@ -1,5 +1,13 @@
 FROM jenkins/jenkins:lts
-MAINTAINER mura
+
+LABEL maintainer="sidovsky.develop@gmail.com"
+LABEL description="Docker image for Jenkins with docker"
+
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
+
+RUN mkdir -p /var/jenkins_home
+COPY locale.xml /var/jenkins_home/locale.xml
 
 USER root
 
