@@ -2,6 +2,18 @@
 
 buildscript {
     ext.kotlin_version = '1.3.72'
+    ext {
+        buildConfig = [
+            'version'   : [
+                    'major': 0,
+                    'minor': 1,
+                    'patch': 0,
+                    'build': 0,
+            ],
+        ]
+        buildConfig.version['name'] = "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}"
+        buildConfig.version['code'] = buildConfig.version.major * 1000000 + buildConfig.version.minor * 10000 + buildConfig.version.patch * 100 + buildConfig.version.build
+    }
     repositories {
         google()
         jcenter()

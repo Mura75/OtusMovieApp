@@ -13,8 +13,8 @@ android {
         applicationId "otus.movieapp"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.0.5"
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,20 +44,20 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
             firebaseAppDistribution {
                 def props = loadProperties('publish.properties')
                 if (props.isEmpty()) {
                     logger.warn('publish functions does not work')
                     return
                 }
-                appId = props['FIREBASE_APP_ID']
-                serviceCredentialsFile = file(props['GOOGLE_APPLICATION_CREDENTIALS']).absolutePath
+                appId = "${props['FIREBASE_APP_ID']}"
+                serviceCredentialsFile = "${file(props['GOOGLE_APPLICATION_CREDENTIALS']).absolutePath}"
                 testers = "zmurager2@gmail.com"
             }
-
-            minifyEnabled false
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
