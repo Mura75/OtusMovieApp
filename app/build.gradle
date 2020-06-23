@@ -30,26 +30,28 @@ android {
 
     signingConfigs {
         release {
-            try {
-                def props = loadProperties('signing.properties')
-
-                storePassword props['KEYSTORE_PASSWORD']
-                keyAlias props['KEY_ALIAS']
-                keyPassword props['KEY_PASSWORD']
-                storeFile file(props['KEY_STORE'])
+            def props = loadProperties('signing.properties')
+            if (props.isEmpty()) {
+                logger.warn('Release keystore not found.')
+                return
             }
-            catch (ex) {
-                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
-            }
+            storePassword props['KEYSTORE_PASSWORD']
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['KEY_STORE'])
         }
     }
 
     buildTypes {
         release {
             firebaseAppDistribution {
-                def publishJson = file("publish_json")
-                appId = project.properties.get("FIREBASE_APP_ID")
-                serviceCredentialsFile = publishJson
+                def props = loadProperties('publish.properties')
+                if (props.isEmpty()) {
+                    logger.warn('publish functions does not work')
+                    return
+                }
+                appId = props['FIREBASE_APP_ID']
+                serviceCredentialsFile = file(props['GOOGLE_APPLICATION_CREDENTIALS'])
                 testers = "zmurager2@gmail.com"
             }
 
