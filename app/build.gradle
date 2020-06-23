@@ -36,7 +36,7 @@ android {
                 storePassword props['KEYSTORE_PASSWORD']
                 keyAlias props['KEY_ALIAS']
                 keyPassword props['KEY_PASSWORD']
-                storeFile file("${rootDir}${props['KEY_STORE']}")
+                storeFile file(props['KEY_STORE'])
             }
             catch (ex) {
                 throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
