@@ -52,7 +52,7 @@ pipeline {
             file(credentialsId: 'properties', variable: 'keystore_properties')
         ]
     ) {
-        sh "cp -f $keystore $keystorePath/upload-keystore.jks"
+        sh "cp -f $keystore $keystorePath/keystore.jks"
         sh "cp -f $keystore_properties $keystorePath/signing.properties"
     }
   }
