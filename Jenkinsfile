@@ -32,10 +32,6 @@ pipeline {
           }
       }
       stage('publish') {
-          environment {
-              FIREBASE_APP_ID = credentials('FIREBASE_APP_ID')
-              FIREBASE_TOKEN = credentials('FIREBASE_TOKEN')
-          }
           steps {
               loadFirebasePublishJson()
               sh " ./gradlew assembleRelease appDistributionUploadRelease"
