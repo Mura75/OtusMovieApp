@@ -61,10 +61,10 @@ pipeline {
   def loadFirebasePublishJson() {
     def keystorePath = "./app"
     withCredentials(
-            [
-                file(credentialsId: 'publish_json', variable: 'google_app_credentials')
-            ]
+        [
+            file(credentialsId: 'publish_json', variable: 'google_app_credentials')
+        ]
     ) {
             sh "cp -f $google_app_credentials $keystorePath/publish.json"
-        }
+      }
   }
