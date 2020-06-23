@@ -39,10 +39,10 @@ pipeline {
     withCredentials(
         [
             file(credentialsId: 'keystore', variable: 'keystore'),
-            file(credentialsId: 'properties', variable: 'properties')
+            file(credentialsId: 'properties', variable: 'keystore_properties')
         ]
     ) {
         sh "cp -f $keystore $keystorePath/upload-keystore.jks"
-        sh "cp -f $properties $keystorePath/signing.properties"
+        sh "cp -f $keystore_properties $keystorePath/signing.properties"
     }
   }
