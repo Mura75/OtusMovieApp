@@ -38,7 +38,7 @@ pipeline {
     def keystorePath = "./app"
     withCredentials(
         [
-            file(credentialsId: 'keystore', variable: 'keystore')
+            file(credentialsId: 'keystore', variable: 'keystore'),
             file(credentialsId: 'properties', variable: 'properties')
         ]
     ) {
