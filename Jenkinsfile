@@ -31,6 +31,16 @@ pipeline {
               sh "./gradlew test"
           }
       }
+      stage('publish') {
+          environment {
+              loadFirebasePublishJson()
+              FIREBASE_APP_ID = credentials('FIREBASE_APP_ID')
+              FIREBASE_TOKEN = credentials('FIREBASE_TOKEN')
+          }
+          steps {
+              sh "./gradlew appCenterUploadRelease"
+          }
+      }
   }
 }
 
@@ -45,4 +55,16 @@ pipeline {
         sh "cp -f $keystore $keystorePath/upload-keystore.jks"
         sh "cp -f $keystore_properties $keystorePath/signing.properties"
     }
+  }
+
+
+  def loadFirebasePublishJson() {
+    def keystorePath = "./app"
+    withCredentials(
+            [
+                file(credentialsId: 'publish_json', variable: 'google_app_credentials')
+            ]
+    ) {
+            sh "cp -f $google_app_credentials $keystorePath/publish.json"
+        }
   }
