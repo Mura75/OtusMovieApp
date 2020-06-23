@@ -51,7 +51,7 @@ android {
                     return
                 }
                 appId = props['FIREBASE_APP_ID']
-                serviceCredentialsFile = file(props['GOOGLE_APPLICATION_CREDENTIALS'])
+                serviceCredentialsFile = file(props['GOOGLE_APPLICATION_CREDENTIALS']).absolutePath
                 testers = "zmurager2@gmail.com"
             }
 
