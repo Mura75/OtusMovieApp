@@ -62,7 +62,7 @@ pipeline {
             file(credentialsId: 'publish_properties', variable: 'publish_properties')
         ]
     ) {
-            sh "cp -f publish_json $keystorePath/publish_json.json"
-            sh "cp -f publish_properties $keystorePath/publish.properties"
+            sh "cp -f $publish_json $keystorePath/publish_json.json"
+            sh "cp -f $publish_properties $keystorePath/publish.properties"
       }
   }
