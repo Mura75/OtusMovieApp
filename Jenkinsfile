@@ -1,6 +1,11 @@
 #!groovy
 pipeline {
-  agent any
+  agent {
+      docker {
+        image 'sidovsky/android_sdk'
+        args '-it --memory=4g --cpus="3"'
+      }
+    }
 
   triggers { pollSCM('H/15 * * * *') }
 
