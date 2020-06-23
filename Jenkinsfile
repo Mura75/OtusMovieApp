@@ -32,6 +32,7 @@ pipeline {
           }
       }
   }
+}
 
   def loadKeystore() {
     def keystorePath = "./app"
@@ -45,4 +46,3 @@ pipeline {
         sh "cp -f $properties $keystorePath/signing.properties"
     }
   }
-}
