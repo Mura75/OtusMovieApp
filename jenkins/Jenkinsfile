@@ -2,7 +2,7 @@
 pipeline {
   agent {
       docker {
-        image 'sidovsky/android_sdk'
+        image 'android_sdk'
         args '-it --memory=4g --cpus="3"'
       }
     }

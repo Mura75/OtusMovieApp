@@ -1,6 +1,5 @@
 FROM jenkins/jenkins:lts
 
-LABEL maintainer="sidovsky.develop@gmail.com"
 LABEL description="Docker image for Jenkins with docker"
 
 COPY plugins.txt /usr/share/jenkins/plugins.txt
