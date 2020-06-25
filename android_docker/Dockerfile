@@ -47,6 +47,6 @@ RUN mkdir -p /root/.android && \
 # RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
 #    ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES} --verbose
 
-RUN $ANDROID_HOME/tools/bin/sdkmanager "build-tools;28.0.3" \
+RUN $ANDROID_HOME/tools/bin/sdkmanager "build-tools;29.0.3" \
     "platforms;android-29" \
     "platform-tools"
