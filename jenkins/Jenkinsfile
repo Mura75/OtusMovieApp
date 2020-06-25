@@ -21,15 +21,15 @@ pipeline {
             sh "./gradlew lint"
           }
       }
+      stage('test') {
+          steps {
+            sh "./gradlew test"
+          }
+      }
       stage('buildRelease') {
             steps {
                 sh "./gradlew clean assembleRelease --stacktrace"
             }
-      }
-      stage('test') {
-          steps {
-              sh "./gradlew test"
-          }
       }
       stage('publish') {
           steps {
