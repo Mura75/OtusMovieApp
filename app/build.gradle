@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.firebase.appdistribution'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -11,8 +13,8 @@ android {
         applicationId "otus.movieapp"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,10 +28,36 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    signingConfigs {
+        release {
+            def props = loadProperties('signing.properties')
+            if (props.isEmpty()) {
+                logger.warn('Release keystore not found.')
+                return
+            }
+            storePassword props['KEYSTORE_PASSWORD']
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['KEY_STORE'])
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            firebaseAppDistribution {
+                def props = loadProperties('publish.properties')
+                if (props.isEmpty()) {
+                    logger.warn('publish functions does not work')
+                    return
+                }
+                appId = "${props['FIREBASE_APP_ID']}"
+                serviceCredentialsFile = "${file(props['GOOGLE_APPLICATION_CREDENTIALS']).absolutePath}"
+                testers = "zmurager2@gmail.com"
+            }
         }
     }
 
@@ -89,4 +117,14 @@ dependencies {
     implementation project(':sources:main')
     implementation project(':sources:movie_list')
     implementation project(':sources:movie_detail')
+}
+
+private Properties loadProperties(String propertiesFilePath) {
+    def keystoreProperties = new Properties()
+
+    def keystorePropertiesFile = file(propertiesFilePath)
+    if (keystorePropertiesFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    }
+    return keystoreProperties
 }
