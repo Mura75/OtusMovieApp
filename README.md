@@ -18,7 +18,15 @@ Libraries
   4) Dagger2
   5) RxJava2
   6) Glide
+  7) Pagging library
   
   
   
+Questions 
+1) Module independed run
+2) paging library test
+3) Token Use case or Auth Interceptor (right architecture way)
+4) domain/data for each module 
+5) CI/CD || run
+6) CI/CD for outsource team
 
