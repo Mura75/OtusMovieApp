@@ -6,11 +6,13 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.ext.junit.rules.activityScenarioRule
+import org.junit.Assert
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
@@ -53,17 +55,17 @@ class MovieListFragmentTest {
             assertNotNull(shadowActivity)
             val intent = shadowActivity.nextStartedActivity
             assertNotNull(intent)
-
         }
     }
 
     @Test
     fun testActivity() {
-        rule.scenario.onActivity { activity ->
-            val expectedIntent = Intent(activity, MovieDetailActivity::class.java)
-            val actual: Intent = ShadowApplication().nextStartedActivity
-
-            assertNotNull(actual)
-        }
+        val activity: MainActivity = Robolectric.buildActivity<MainActivity>(MainActivity::class.java)
+            .setup()
+            .get()
+        val expectedIntent = Intent(activity, MovieDetailActivity::class.java)
+        val actual: Intent = ShadowApplication().nextStartedActivity //always return null. Can't find any answer.
+        assertNotNull(actual)
+        Assert.assertEquals(expectedIntent.component, actual.component)
     }
 }
