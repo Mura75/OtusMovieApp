@@ -1,7 +1,10 @@
 package otus.core_api.dto
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MovieData(
     @SerializedName("id") val id: Int,
     @SerializedName("adult") val adult: Boolean? = null,
@@ -18,4 +21,4 @@ data class MovieData(
     @SerializedName("video") val video: Boolean? = null,
     @SerializedName("vote_average") val voteAverage: Double? = null,
     @SerializedName("vote_count") val voteCount: Int? = null
-)
+) : Parcelable

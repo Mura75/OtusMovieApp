@@ -36,10 +36,17 @@ android {
     lintOptions {
         ignoreTestSources true
         abortOnError false
+        warningsAsErrors true
         ignoreWarnings false
         xmlReport true
         checkDependencies true
         baselineFile file("lint-baseline.xml")
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 
@@ -98,5 +105,52 @@ dependencies {
     implementation project(':sources:movie_list')
     implementation project(':sources:movie_detail')
 
-    compileOnly project(':sources:lint-check')
+    lintChecks project(':sources:lint-check')
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.2.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.1'
+    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
+    androidTestImplementation 'com.google.truth:truth:1.0'
+
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.2.0'
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.4.0"
+
+    // The following Espresso dependency can be either "implementation"
+    // or "androidTestImplementation", depending on whether you want the
+    // dependency to appear on your APK's compile classpath or the test APK
+    // classpath.
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+
+    testImplementation 'org.robolectric:robolectric:4.3'
+    testImplementation 'androidx.test.ext:junit-ktx:1.1.1'
+    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.4.0"
+
+    testImplementation "org.powermock:powermock-module-junit4:2.0.7"
+    testImplementation "org.powermock:powermock-module-junit4-rule:2.0.7"
+    testImplementation "org.powermock:powermock-api-mockito2:2.0.7"
+    testImplementation "org.powermock:powermock-classloading-xstream:2.0.7"
+
+    debugImplementation 'androidx.fragment:fragment-testing:1.2.4'
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'compileDebugSources' ||
+            task.name == 'compileReleaseSources') {
+        task.dependsOn lint
+        task.mustRunAfter lint
+    }
 }

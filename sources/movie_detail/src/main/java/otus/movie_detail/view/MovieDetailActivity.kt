@@ -1,19 +1,27 @@
 package otus.movie_detail.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.mobile.moviedatabase.features.movies.detail.MovieDetailViewModel
 import otus.core_api.AppConstants
+import otus.core_api.dto.MovieData
 import otus.core_api.mediator.AppWithFacade
 import otus.movie_detail.R
 import otus.movie_detail.di.EagerTrigger
@@ -24,10 +32,16 @@ import javax.inject.Inject
 class MovieDetailActivity : AppCompatActivity() {
 
     companion object {
-        fun start(context: Context, movieId: Int) {
+        fun start(context: Context, movie: MovieData, imageView: ImageView) {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                (context as Activity),
+                imageView,
+                imageView.transitionName
+            )
             val intent = Intent(context, MovieDetailActivity::class.java)
-            intent.putExtra(AppConstants.MOVIE_ID, movieId)
-            context.startActivity(intent)
+            intent.putExtra(AppConstants.MOVIE_DATA, movie)
+            intent.putExtra(AppConstants.TRANSITION, imageView.transitionName)
+            context.startActivity(intent, options.toBundle())
         }
     }
 
@@ -49,8 +63,8 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var tvRating: TextView
     private lateinit var tvDescription: TextView
 
-    private val movieId by lazy {
-        intent?.getIntExtra(AppConstants.MOVIE_ID, 0) ?: 0
+    private val movie by lazy {
+        intent?.getParcelableExtra<MovieData>(AppConstants.MOVIE_DATA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +87,36 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        viewModel.getMovieDetail(movieId = movieId)
+        movie?.let { movieData ->
+            viewModel.getMovieDetail(movieId = movieData.id)
+            ivPoster.transitionName = intent.getStringExtra(AppConstants.TRANSITION)
+
+            Glide.with(this)
+                .load("${NetworkConstants.BACKDROP_BASE_URL}${movieData.backdropPath}")
+                .addListener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        supportStartPostponedEnterTransition()
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        supportStartPostponedEnterTransition()
+                        return false
+                    }
+                })
+                .into(ivPoster)
+        }
         viewModel.liveData.observe(this, Observer { result ->
             when(result) {
                 is MovieState.ShowLoading -> {
@@ -83,10 +126,6 @@ class MovieDetailActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                 }
                 is MovieState.Result -> {
-                    Glide.with(this)
-                        .load("${NetworkConstants.BACKDROP_BASE_URL}${result.movie.backdropPath}")
-                        .into(ivPoster)
-
                     tvName.text = result.movie.title
                     tvDescription.text = result.movie.overview
                     tvGenre.text = result.movie.genres?.first()?.name

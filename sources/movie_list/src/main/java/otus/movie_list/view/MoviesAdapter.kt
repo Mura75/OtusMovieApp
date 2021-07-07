@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,7 @@ import otus.movie_list.R
 import otus.movieapp.data.network.NetworkConstants
 
 class MoviesAdapter(
-    private val itemClickListener: ((item: MovieData) -> Unit)? = null
+    private val itemClickListener: ((item: MovieData, imageView: ImageView) -> Unit)? = null
 ) : PagedListAdapter<MovieData, MoviesAdapter.MovieViewHolder>(movieDiffCallback) {
 
     companion object {
@@ -41,7 +42,7 @@ class MoviesAdapter(
 
     inner class MovieViewHolder(
         private val view: View,
-        private val itemClickListener: ((item: MovieData) -> Unit)? = null
+        private val itemClickListener: ((item: MovieData, imageView: ImageView) -> Unit)? = null
     ): BaseViewHolder(view) {
 
         private val tvTitle: TextView
@@ -74,7 +75,9 @@ class MoviesAdapter(
                 .into(ivPoster)
 
             view.setOnClickListener {
-                itemClickListener?.invoke(item)
+                ivPoster.transitionName = item.hashCode().toString()
+                //ViewCompat.setTransitionName(ivPoster, item.title)
+                itemClickListener?.invoke(item, ivPoster)
             }
         }
 
