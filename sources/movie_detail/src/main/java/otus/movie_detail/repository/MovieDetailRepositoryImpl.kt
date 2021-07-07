@@ -15,7 +15,7 @@ class MovieDetailRepositoryImpl @Inject constructor(
                 if (response.isSuccessful) {
                     Single.just(response.body())
                 } else {
-                    Single.error(Throwable(""))
+                    Single.error(Throwable("connection error"))
                 }
             }
     }

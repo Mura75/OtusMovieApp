@@ -16,11 +16,10 @@ class MovieRepositoryImpl @Inject constructor(
                 if (response.isSuccessful) {
                     val pages = response.body()?.page ?: 0
                     val list = response.body()?.results ?: emptyList()
-                    Log.d("movies_list_response", list.toString())
                     val pair = Pair(pages, list)
                     Single.just(pair)
                 } else {
-                    Single.error(Throwable(""))
+                    Single.error(Throwable("movie list error"))
                 }
             }
     }
